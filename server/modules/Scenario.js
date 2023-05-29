@@ -6,6 +6,9 @@ const ScenarioSchema = new mongoose.Schema({
   scenarioTitle: String,
   scenarioDifficulty: String,
   scenarioImpact: String,
+  tactic: String,
+  description: String,
+  attackFlow: [String],
   recommendations: [String],
   photos: [String],
 });
