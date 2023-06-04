@@ -38,3 +38,19 @@ exports.getLatestScenarioNumber = async (req, res) => {
       res.status(500).send('Error fetching the latest scenario number');
     }
 };
+
+exports.approveScenario = async (req, res) => {
+  const scenario = await Scenario.findByIdAndUpdate(req.params.id, { status: 'Approved' }, { new: true });
+  if (!scenario) {
+    return res.status(404).send('Scenario not found');
+  }
+  res.send(scenario);
+};
+
+exports.disapproveScenario = async (req, res) => {
+  const scenario = await Scenario.findByIdAndUpdate(req.params.id, { status: 'Disapproved' }, { new: true });
+  if (!scenario) {
+    return res.status(404).send('Scenario not found');
+  }
+  res.send(scenario);
+};

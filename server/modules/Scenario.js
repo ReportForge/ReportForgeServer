@@ -11,6 +11,11 @@ const ScenarioSchema = new mongoose.Schema({
   attackFlow: [String],
   recommendations: [String],
   photos: [String],
+  status: {
+    type: String,
+    enum: ['Pending', 'Approved', 'Disapproved'],
+    default: 'Pending'
+  },
 });
 
 module.exports = mongoose.model('Scenario', ScenarioSchema);

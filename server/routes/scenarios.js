@@ -8,5 +8,7 @@ router.get('/scenarios', scenariosController.getScenarios);
 router.put('/scenarios/:id', scenariosController.updateScenario);
 router.delete('/scenarios/:id', scenariosController.deleteScenario);
 router.get('/scenarios/latest-number', scenariosController.getLatestScenarioNumber);
+router.put('/scenarios/approve/:id', scenariosController.approveScenario);
+router.put('/scenarios/disapprove/:id', scenariosController.disapproveScenario);
 
 module.exports = router;
