@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const scenariosRoutes = require('./routes/scenarios'); // Path to your scenarios routes file
-
+const hebrewScenariosRoutes = require('./routes/hebrewScenario'); // Path to your Hebrew scenarios routes file
 
 // create express app
 const app = express();
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', scenariosRoutes);
-
+app.use('/', hebrewScenariosRoutes); // Use the Hebrew scenarios routes with your Express application
 
 // connect to MongoDB
 mongoose.connect('mongodb+srv://reportforge:Ilovereport@reportforge.83zhein.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -34,6 +34,3 @@ mongoose.connect('mongodb+srv://reportforge:Ilovereport@reportforge.83zhein.mong
 app.get('/', (req, res) => {
     res.json({"message": "Welcome to our application."});
 });
-
-
-
