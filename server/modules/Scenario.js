@@ -9,7 +9,10 @@ const ScenarioSchema = new mongoose.Schema({
   tactic: String,
   description: String,
   attackFlow: [String],
-  recommendations: [String],
+  recommendations: [{
+    systemName: String,
+    mitigations: [String]
+  }],
   photos: [String],
   status: {
     type: String,
