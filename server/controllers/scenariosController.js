@@ -57,11 +57,14 @@ exports.disapproveScenario = async (req, res) => {
 
 exports.removeAllPhotos = async (req, res) => {
   try {
-    // Example: Remove all photos from all scenarios (adjust according to your schema and requirements)
-    const result = await Scenario.updateMany({}, { $unset: { photos: "" } });
-    res.send({ message: 'All photos removed successfully', details: result });
+    // Update all scenarios, setting the photos array to empty
+    const updateResult = await Scenario.updateMany({}, { $set: { photos: [] } });
+    if (updateResult.matchedCount === 0) {
+      return res.status(404).send('No scenarios found to update.');
+    }
+    res.send({ message: 'Photos removed from all scenarios', updatedCount: updateResult.modifiedCount });
   } catch (error) {
-    console.error('Failed to remove photos:', error);
-    res.status(500).send('Failed to remove photos');
+    console.log(error);
+    res.status(500).send('Error removing photos from scenarios');
   }
 };

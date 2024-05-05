@@ -10,5 +10,6 @@ router.delete('/hebrewScenario/:id', hebrewScenariosController.deleteHebrewScena
 router.get('/hebrewScenario/latest-number', hebrewScenariosController.getLatestHebrewScenarioNumber);
 router.put('/hebrewScenario/approve/:id', hebrewScenariosController.approveHebrewScenario);
 router.put('/hebrewScenario/disapprove/:id', hebrewScenariosController.disapproveHebrewScenario);
+router.post('/hebrewScenario/removePhotos', hebrewScenariosController.removeAllPhotosHebrewScenario);
 
 module.exports = router;
