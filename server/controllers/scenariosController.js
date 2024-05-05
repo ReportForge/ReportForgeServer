@@ -29,14 +29,14 @@ exports.deleteScenario = async (req, res) => {
 };
 
 exports.getLatestScenarioNumber = async (req, res) => {
-    try {
-      const latestScenario = await Scenario.findOne().sort({ scenarioNumber: -1 }).limit(1);
-      const latestScenarioNumber = latestScenario ? latestScenario.scenarioNumber : 0;
-      res.send({ latestScenarioNumber });
-    } catch (error) {
-      console.log(error);
-      res.status(500).send('Error fetching the latest scenario number');
-    }
+  try {
+    const latestScenario = await Scenario.findOne().sort({ scenarioNumber: -1 }).limit(1);
+    const latestScenarioNumber = latestScenario ? latestScenario.scenarioNumber : 0;
+    res.send({ latestScenarioNumber });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error fetching the latest scenario number');
+  }
 };
 
 exports.approveScenario = async (req, res) => {
@@ -53,4 +53,15 @@ exports.disapproveScenario = async (req, res) => {
     return res.status(404).send('Scenario not found');
   }
   res.send(scenario);
+};
+
+exports.removeAllPhotos = async (req, res) => {
+  try {
+    // Example: Remove all photos from all scenarios (adjust according to your schema and requirements)
+    const result = await Scenario.updateMany({}, { $unset: { photos: "" } });
+    res.send({ message: 'All photos removed successfully', details: result });
+  } catch (error) {
+    console.error('Failed to remove photos:', error);
+    res.status(500).send('Failed to remove photos');
+  }
 };
