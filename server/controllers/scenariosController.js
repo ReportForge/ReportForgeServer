@@ -13,7 +13,13 @@ exports.getScenarios = async (req, res) => {
 };
 
 exports.updateScenario = async (req, res) => {
-  const scenario = await Scenario.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  const scenario = await Scenario.findById(req.params.id);
+  if (!scenario) {
+    return res.status(404).send('Scenario not found');
+  }
+  scenario.photos = [];
+  await scenario.save();
+  scenario = await Scenario.findByIdAndUpdate(req.params.id, req.body, { new: true });
   if (!scenario) {
     return res.status(404).send('Scenario not found');
   }
@@ -29,14 +35,14 @@ exports.deleteScenario = async (req, res) => {
 };
 
 exports.getLatestScenarioNumber = async (req, res) => {
-    try {
-      const latestScenario = await Scenario.findOne().sort({ scenarioNumber: -1 }).limit(1);
-      const latestScenarioNumber = latestScenario ? latestScenario.scenarioNumber : 0;
-      res.send({ latestScenarioNumber });
-    } catch (error) {
-      console.log(error);
-      res.status(500).send('Error fetching the latest scenario number');
-    }
+  try {
+    const latestScenario = await Scenario.findOne().sort({ scenarioNumber: -1 }).limit(1);
+    const latestScenarioNumber = latestScenario ? latestScenario.scenarioNumber : 0;
+    res.send({ latestScenarioNumber });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error fetching the latest scenario number');
+  }
 };
 
 exports.approveScenario = async (req, res) => {
