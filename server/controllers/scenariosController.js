@@ -13,13 +13,7 @@ exports.getScenarios = async (req, res) => {
 };
 
 exports.updateScenario = async (req, res) => {
-  const scenario = await Scenario.findById(req.params.id);
-  if (!scenario) {
-    return res.status(404).send('Scenario not found');
-  }
-  scenario.photos = [];
-  await scenario.save();
-  scenario = await Scenario.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  const scenario = await Scenario.findByIdAndUpdate(req.params.id, req.body, { new: true });
   if (!scenario) {
     return res.status(404).send('Scenario not found');
   }
@@ -35,14 +29,14 @@ exports.deleteScenario = async (req, res) => {
 };
 
 exports.getLatestScenarioNumber = async (req, res) => {
-  try {
-    const latestScenario = await Scenario.findOne().sort({ scenarioNumber: -1 }).limit(1);
-    const latestScenarioNumber = latestScenario ? latestScenario.scenarioNumber : 0;
-    res.send({ latestScenarioNumber });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('Error fetching the latest scenario number');
-  }
+    try {
+      const latestScenario = await Scenario.findOne().sort({ scenarioNumber: -1 }).limit(1);
+      const latestScenarioNumber = latestScenario ? latestScenario.scenarioNumber : 0;
+      res.send({ latestScenarioNumber });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Error fetching the latest scenario number');
+    }
 };
 
 exports.approveScenario = async (req, res) => {
@@ -59,18 +53,4 @@ exports.disapproveScenario = async (req, res) => {
     return res.status(404).send('Scenario not found');
   }
   res.send(scenario);
-};
-
-exports.removeAllPhotos = async (req, res) => {
-  try {
-    // Update all scenarios, setting the photos array to empty
-    const updateResult = await Scenario.updateMany({}, { $set: { photos: [] } });
-    if (updateResult.matchedCount === 0) {
-      return res.status(404).send('No scenarios found to update.');
-    }
-    res.send({ message: 'Photos removed from all scenarios', updatedCount: updateResult.modifiedCount });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('Error removing photos from scenarios');
-  }
 };
