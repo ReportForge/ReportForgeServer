@@ -10,5 +10,6 @@ router.delete('/scenarios/:id', scenariosController.deleteScenario);
 router.get('/scenarios/latest-number', scenariosController.getLatestScenarioNumber);
 router.put('/scenarios/approve/:id', scenariosController.approveScenario);
 router.put('/scenarios/disapprove/:id', scenariosController.disapproveScenario);
+router.post('/scenarios/removePhotos', scenariosController.removeAllPhotos);
 
 module.exports = router;
