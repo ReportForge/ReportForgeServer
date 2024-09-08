@@ -162,3 +162,4 @@ exports.getScenariosByBulletNames = async (req, res) => {
     res.status(500).send('Error fetching scenarios by bullet names');
   }
 };
+
