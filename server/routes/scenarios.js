@@ -11,5 +11,7 @@ router.get('/scenarios/latest-number', scenariosController.getLatestScenarioNumb
 router.put('/scenarios/approve/:id', scenariosController.approveScenario);
 router.put('/scenarios/disapprove/:id', scenariosController.disapproveScenario);
 router.post('/scenarios/removePhotos', scenariosController.removeAllPhotos);
+router.post('/scenarios/validated', scenariosController.createValidatedScenario);
+router.post('/scenarios/by-bullet-names', scenariosController.getScenariosByBulletNames);
 
 module.exports = router;
