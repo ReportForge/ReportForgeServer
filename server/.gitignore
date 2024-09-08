@@ -1,0 +1,106 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variable files
+.env
+.env.local
+.env.*.local
+
+# Directory for local environment settings
+.vscode/
+
+# Coverage directory used by testing tools like Jest or Mocha
+coverage/
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment files
+.env
+.env.test
+
+# Parcel cache
+.cache
+
+# next.js build output
+.next/
+
+# Nuxt.js build output
+.nuxt/
+
+# Gatsby files
+.cache/
+public/
+
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+.grunt/
+
+# IDEs
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS files
+.DS_Store
+
+# Debug logs from shell
+npm-debug.log*
+yarn-debug.log*
+
+# Logs from Heroku deployments
+.heroku/
+
+# Temporary files
+tmp/
+temp/
+
+# Build directories
+dist/
+build/
+
+# Webpack
+webpack-stats.json
+
+# TernJS cache
+.tern-port
+
+# eslint cache
+.eslintcache
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Svelte cache
+.svelte-kit/
+
+# Firebase cache
+.firebaserc
+
+# Azure Pipelines
+.azure-pipelines/
